@@ -203,9 +203,10 @@ h1 {
 .water-level-section ul{
   padding-left: 0px;
   list-style-type: none;
-  max-width: 170px;
+  max-width: 48%;
   margin-top: 45px;
 }
+
 .water-level-section li{
   color: #757F81;
   margin: 15px 0;
@@ -267,4 +268,14 @@ h1 {
   border-radius: 100px;
   height: 10px;
   width: 10px;
+}
+@media screen and (max-width:992px) {
+  .height-auto{min-height: 0px;}
+}
+
+@media screen and (max-width:425px) {
+  .tile-section{height: auto;}
+  .weather-day-section{height: auto;flex-wrap: wrap;}
+  .weather-day-item{width: 50%; border-bottom: 1px solid #D7D8DC; padding: 8px 0;}
+  .weather-day-section .last{width: 100%;}
 }
