@@ -96,98 +96,98 @@
                 <div class="col-md-8 col-xs-12 margin-tb">
                   <div class='tile-section no-padding'>
                     <div class="row weather-day-section">
-                      <div class="weather-day-item">
+                      <div class="weather-day-item" id='weather-0'>
                         <div>
                           <h1>SUN</h1>
                           <img src='./images/rc_sunny.svg' alt="">
                           <h2>Sunny</h2>
                         </div>
                         <div>
-                          <h2>10%</h2>
+                          <h2>0%</h2>
                           <div class="daily-rain-level">
                             <div class="circle"></div>
                           </div>
                           <h2>0 in</h2>
                         </div>
                       </div>
-                      <div class="weather-day-item">
+                      <div class="weather-day-item" id='weather-1'>
                         <div>
                           <h1>SUN</h1>
                           <img src='./images/rc_sunny.svg' alt="">
                           <h2>Sunny</h2>
                         </div>
                         <div>
-                          <h2>10%</h2>
+                          <h2>0%</h2>
                           <div class="daily-rain-level">
                             <div class="circle"></div>
                           </div>
                           <h2>0 in</h2>
                         </div>
                       </div>
-                      <div class="weather-day-item">
+                      <div class="weather-day-item" id='weather-2'>
                         <div>
                           <h1>SUN</h1>
                           <img src='./images/rc_sunny.svg' alt="">
                           <h2>Sunny</h2>
                         </div>
                         <div>
-                          <h2>10%</h2>
+                          <h2>0%</h2>
                           <div class="daily-rain-level">
                             <div class="circle"></div>
                           </div>
                           <h2>0 in</h2>
                         </div>
                       </div>
-                      <div class="weather-day-item">
+                      <div class="weather-day-item" id='weather-3'>
                         <div>
                           <h1>SUN</h1>
                           <img src='./images/rc_sunny.svg' alt="">
                           <h2>Sunny</h2>
                         </div>
                         <div>
-                          <h2>10%</h2>
+                          <h2>0%</h2>
                           <div class="daily-rain-level">
                             <div class="circle"></div>
                           </div>
                           <h2>0 in</h2>
                         </div>
                       </div>
-                      <div class="weather-day-item">
+                      <div class="weather-day-item" id='weather-4'>
                         <div>
                           <h1>SUN</h1>
                           <img src='./images/rc_sunny.svg' alt="">
                           <h2>Sunny</h2>
                         </div>
                         <div>
-                          <h2>10%</h2>
+                          <h2>0%</h2>
                           <div class="daily-rain-level">
                             <div class="circle"></div>
                           </div>
                           <h2>0 in</h2>
                         </div>
                       </div>
-                      <div class="weather-day-item">
+                      <div class="weather-day-item" id='weather-5'>
                         <div>
                           <h1>SUN</h1>
                           <img src='./images/rc_sunny.svg' alt="">
                           <h2>Sunny</h2>
                         </div>
                         <div>
-                          <h2>10%</h2>
+                          <h2>0%</h2>
                           <div class="daily-rain-level">
                             <div class="circle"></div>
                           </div>
                           <h2>0 in</h2>
                         </div>
                       </div>
-                      <div class="weather-day-item last">
+                      <div class="weather-day-item last" id='weather-6'>
                         <div>
                           <h1>SUN</h1>
                           <img src='./images/rc_sunny.svg' alt="">
                           <h2>Sunny</h2>
                         </div>
                         <div>
-                          <h2>10%</h2>
+                          <h2>0%</h2>
                           <div class="daily-rain-level">
                             <div class="circle"></div>
                           </div>
@@ -202,7 +202,7 @@
             <div class="row">
               <div class="col-md-8 col-xs-12 margin-tb ">
                 <div class='tile-section no-padding height-auto'>
-                  <h2>Monthy Water Collection (G)</h2>
+                  <h2>Monthy Water Collection and Distribution (G)</h2>
                   <div style="width='100%'">
                     <canvas id="line-chart" ></canvas>
                   </div>
@@ -210,10 +210,32 @@
               </div>
               <div class="col-md-4 col-xs-12 margin-tb">
                 <div class='tile-section no-padding height-auto'>
-                  <h2>Monthy Zone Distribution</h2>
-                  <div style="width='100%'">
-                    <canvas id="radar-chart" ></canvas>
-                  </div>
+                  <h2>ZONE CONTROLS</h2>
+                  <ul class="nav nav-tabs margin-tb" role="tablist">
+                    <li role="presentation" class="active"><a href="#zone-1" aria-controls="home" role="tab" data-toggle="tab">ZONE 1</a></li>
+                    <li role="presentation"><a href="#zone-2" aria-controls="profile" role="tab" data-toggle="tab">ZONE 2</a></li>
+                    <li role="presentation"><a href="#zone-3" aria-controls="messages" role="tab" data-toggle="tab">ZONE 3</a></li>
+                  </ul>
+                  <div class="tab-content">
+                     <div role="tabpanel" class="tab-pane active text-center" id="zone-1">
+                        <label class="switch margin-tb">
+                          <input type="checkbox">
+                          <div class="slider round"></div>
+                        </label>
+                     </div>
+                     <div role="tabpanel" class="tab-pane text-center" id="zone-2">
+                       <label class="switch margin-tb">
+                         <input type="checkbox">
+                         <div class="slider round"></div>
+                       </label>
+                     </div>
+                     <div role="tabpanel" class="tab-pane text-center" id="zone-3">
+                       <label class="switch margin-tb">
+                         <input type="checkbox">
+                         <div class="slider round"></div>
+                       </label>
+                     </div>
+                   </div>
                 </div>
               </div>
             </div>
@@ -224,6 +246,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js'></script>
     <script src="js/socket.io-1.3.7.js"></script>
+    <script type='text/javascript' src='js/moment.js'></script>
     <script type='text/javascript' src='js/timepicki.js'></script>
     <script type='text/javascript' src='js/spin.min.js'></script>
     <script type="text/javascript" src="js/dashboard.js"></script>
