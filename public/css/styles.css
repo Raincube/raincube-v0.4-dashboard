@@ -340,3 +340,17 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+
+.clock{
+  display: flex;
+  justify-content: center;
+  margin: 25px 0;
+  border-top: 1px solid lightgray;
+}
+
+.count-section{
+  padding: 10px 25px;
+}
+
+.clock-label{color: #757F81}

@@ -6,6 +6,8 @@ var DEVICE_ID = "0001"
 $(document).ready(function () {
 
 
+
+
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {} else {
         $('[data-toggle="tooltip"]').tooltip();
     }
@@ -183,72 +185,6 @@ socket.on("dashboardResult", function (data) {
         options: lineOptions
     });
 
-// RADAR CHART
-  // var radarDiv = $('#radar-chart');
-  // var radarData = {
-  //   labels: ["JAN","FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
-  //   datasets: [
-  //       {
-  //         label: "Zone 3",
-  //         fill: true,
-  //         lineTension: 0,
-  //         backgroundColor: "rgba(250, 180, 237, 0.4)",
-  //         borderColor: "rgb(250, 180, 237)",
-  //         borderCapStyle: 'round',
-  //         borderJoinStyle: 'round',
-  //         pointBorderColor: "rgb(250, 180, 237)",
-  //         pointBackgroundColor: "rgb(250, 180, 237)",
-  //         pointHoverRadius: 5,
-  //         pointHoverBackgroundColor: "rgb(250, 180, 237)",
-  //         pointHoverBorderColor: "rgb(250, 180, 237)",
-  //         pointHoverBorderWidth: 2,
-  //         pointRadius: 1,
-  //         pointHitRadius: 10,
-  //         data: [5, 9, 7, 12, 11, 8, 14, 13, 15, 9, 7, 2]//0-15
-  //       },
-  //       {
-  //         label: "Zone 2",
-  //         fill: true,
-  //         lineTension: 0,
-  //         backgroundColor: "rgba(128, 236, 214, 0.4)",
-  //         borderColor: "rgb(128, 236, 214)",
-  //         borderCapStyle: 'round',
-  //         borderJoinStyle: 'round',
-  //         pointBorderColor: "rgb(128, 236, 214)",
-  //         pointBackgroundColor: "rgb(128, 236, 214)",
-  //         pointHoverRadius: 5,
-  //         pointHoverBackgroundColor: "rgb(128, 236, 214)",
-  //         pointHoverBorderColor: "rgb(128, 236, 214)",
-  //         pointHoverBorderWidth: 2,
-  //         pointRadius: 1,
-  //         pointHitRadius: 10,
-  //         data: [22, 25 ,14 ,18 ,12 ,17, 20, 30, 28, 25, 17, 20]//10-30
-  //       },
-  //       {
-  //         label: "Zone 1",
-  //         fill: true,
-  //         lineTension: 0,
-  //         backgroundColor: "rgba(99, 226, 255,0.4)",
-  //         borderColor: "rgb(99, 226, 255)",
-  //         borderCapStyle: 'round',
-  //         borderJoinStyle: 'round',
-  //         pointBorderColor: "rgb(99, 226, 255)",
-  //         pointBackgroundColor: "rgb(99, 226, 255)",
-  //         pointHoverRadius: 5,
-  //         pointHoverBackgroundColor: "rgb(99, 226, 255)",
-  //         pointHoverBorderColor: "rgb(99, 226, 255)",
-  //         pointHoverBorderWidth: 2,
-  //         pointRadius: 1,
-  //         pointHitRadius: 10,
-  //         data: [8, 10 ,9 ,8 ,12 ,15, 16, 13, 15, 11, 8, 10]//5-20
-  //       }
-  //   ]
-  // };
-  // var RadarChart = new Chart(radarDiv, {
-  //     type: 'radar',
-  //     data: radarData
-  // });
-
   //FORECAST
   var weatherIcons = {
     "rain": "./images/rc_raining.svg",
@@ -378,11 +314,56 @@ function manualClose(zone) {
 }
 
 function setLength(length, zone) {
+    var zoneButton = "#zone-" + zone + "-button";
+    $(zoneButton).text(length + " minutes ");
+    $(zoneButton).append("<span class='caret'></span>")
     socket.emit("updateLength", {
         zone: zone,
         length: length,
         installID: INSTALL_ID
     });
+
+}
+
+function startCountdown(zone){
+  function getTimeRemaining(endtime) {
+    var t = Date.parse(endtime) - Date.parse(new Date());
+    var seconds = Math.floor((t / 1000) % 60);
+    var minutes = Math.floor((t / 1000 / 60) % 60);
+    return {
+      'total': t,
+      'minutes': minutes,
+      'seconds': seconds
+    };
+  }
+
+  function initializeClock(id, endtime) {
+    var clock = document.getElementById(id);
+    var minutesSpan = clock.querySelector('.minutes');
+    var secondsSpan = clock.querySelector('.seconds');
+
+    function updateClock() {
+      var t = getTimeRemaining(endtime);
+
+      minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+      secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+      if (t.total <= 0) {
+        clearInterval(timeinterval);
+      }
+    }
+
+    updateClock();
+    var timeinterval = setInterval(updateClock, 1000);
+  }
+  var clockDiv = "zone-" + zone + '-clock';
+  var zoneButton = "#zone-" + zone + "-button";
+  var length = $(zoneButton).text();
+  length = length.substring(0,2);
+  
+  var timeTillDeadline = length * 60 * 1000;
+  var deadline = new Date(Date.parse(new Date()) + timeTillDeadline);
+  initializeClock(clockDiv, deadline);
 }
 
 function setTime(time, zone) {
