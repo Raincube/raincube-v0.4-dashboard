@@ -109,7 +109,7 @@ socket.on("dashboardResult", function (data) {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: [205, 230, 211, 168, 150, 153] //<- input dynamic data here
+        data: [150, 167, 148, 137, 120, 92] //<- input dynamic data here
       },
 
       {
@@ -128,7 +128,7 @@ socket.on("dashboardResult", function (data) {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: [36, 33, 25, 21, 18, 15]//5-20
+        data: [36, 33, 25, 85, 120, 132]//5-20
       },
       {
         label: "Zone 2",
@@ -146,7 +146,7 @@ socket.on("dashboardResult", function (data) {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: [45, 55, 52, 50, 38, 45]//10-30
+        data: [71, 69, 76, 94, 115, 125]//10-30
       },
       {
         label: "Zone 3",
@@ -164,7 +164,7 @@ socket.on("dashboardResult", function (data) {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: [34, 43, 35, 39, 37, 22]
+        data: [63, 82, 76, 89, 103, 112]
       }
     ]
   };
@@ -360,7 +360,7 @@ function startCountdown(zone){
   var zoneButton = "#zone-" + zone + "-button";
   var length = $(zoneButton).text();
   length = length.substring(0,2);
-  
+
   var timeTillDeadline = length * 60 * 1000;
   var deadline = new Date(Date.parse(new Date()) + timeTillDeadline);
   initializeClock(clockDiv, deadline);
